@@ -6,299 +6,63 @@
   <title>Hoàn Code - Bot Trading</title>
 
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
+    *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+    body{background:#080d1d;color:white}
+    header{background:#111936;border-bottom:1px solid #263250;position:sticky;top:0;z-index:1000}
+    .nav{max-width:1200px;margin:auto;padding:18px 20px;display:flex;justify-content:space-between;align-items:center}
+    .logo{color:#f6c945;font-size:28px;font-weight:bold}
+    .menu a{color:white;text-decoration:none;margin-left:25px;font-weight:bold}
+    .menu a:hover{color:#f6c945}
+
+    .hero{max-width:1200px;margin:auto;padding:80px 20px 50px;text-align:center}
+    .hero h1{font-size:48px;color:#f6c945;margin-bottom:15px}
+    .hero p{color:#c9d1e6;font-size:18px}
+
+    .section{max-width:1200px;margin:auto;padding:30px 20px}
+    .section-title{text-align:center;margin-bottom:30px}
+    .section-title h2{font-size:36px;color:#f6c945;margin-bottom:10px}
+    .section-title p{color:#c9d1e6}
+
+    .bot-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+    .bot-card{background:#111936;border:1px solid #283760;border-radius:18px;overflow:hidden}
+    .bot-card:hover{transform:translateY(-6px);transition:.25s}
+
+    .bot-img{width:100%;height:240px;object-fit:cover;display:block;background:#19244a}
+
+    .bot-content{padding:22px}
+    .bot-content h3{font-size:24px;margin-bottom:12px}
+    .bot-content p{color:#c9d1e6;line-height:1.6;min-height:75px}
+    .tag{display:inline-block;margin:14px 0;background:#253052;color:#f6c945;padding:6px 12px;border-radius:20px;font-size:13px}
+    .price{font-size:26px;color:#f6c945;font-weight:bold;margin-bottom:16px}
+
+    .bot-content button,.checkout{
+      width:100%;
+      padding:14px;
+      border:none;
+      border-radius:8px;
+      background:#f6c945;
+      color:#111936;
+      font-weight:bold;
+      cursor:pointer;
+      font-size:15px;
     }
 
-    body {
-      background: #080d1d;
-      color: white;
-    }
+    .cart-box{max-width:1200px;margin:40px auto;padding:25px 20px}
+    .cart{background:#111936;border:1px solid #283760;border-radius:18px;padding:25px}
+    .cart h2{color:#f6c945;margin-bottom:15px}
+    .cart-item{display:flex;justify-content:space-between;border-bottom:1px solid #283760;padding:12px 0;color:#dbe4ff}
+    .cart-item button{background:#ff4d4d;color:white;border:none;padding:5px 10px;border-radius:5px;cursor:pointer}
+    .total{margin-top:18px;font-size:22px;color:#f6c945;font-weight:bold}
+    .checkout{margin-top:15px;width:auto}
 
-    header {
-      background: #111936;
-      border-bottom: 1px solid #263250;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
+    .contact{background:#111936;margin-top:40px;padding:45px 20px;text-align:center;border-top:1px solid #283760}
+    .contact h2{color:#f6c945;font-size:30px;margin-bottom:15px}
+    .contact p{color:#c9d1e6;margin-bottom:20px}
+    .contact a{display:inline-block;background:#f6c945;color:#111936;text-decoration:none;padding:14px 25px;border-radius:8px;font-weight:bold}
+    footer{text-align:center;padding:18px;color:#9da8c7;background:#080d1d}
 
-    .nav {
-      max-width: 1200px;
-      margin: auto;
-      padding: 18px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .logo {
-      color: #f6c945;
-      font-size: 28px;
-      font-weight: bold;
-    }
-
-    .menu a {
-      color: white;
-      text-decoration: none;
-      margin-left: 25px;
-      font-weight: bold;
-    }
-
-    .menu a:hover {
-      color: #f6c945;
-    }
-
-    .hero {
-      max-width: 1200px;
-      margin: auto;
-      padding: 80px 20px 50px;
-      text-align: center;
-    }
-
-    .hero h1 {
-      font-size: 48px;
-      color: #f6c945;
-      margin-bottom: 15px;
-    }
-
-    .hero p {
-      color: #c9d1e6;
-      font-size: 18px;
-    }
-
-    .section {
-      max-width: 1200px;
-      margin: auto;
-      padding: 30px 20px;
-    }
-
-    .section-title {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-
-    .section-title h2 {
-      font-size: 36px;
-      color: #f6c945;
-      margin-bottom: 10px;
-    }
-
-    .section-title p {
-      color: #c9d1e6;
-    }
-
-    .filter-box {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      margin-bottom: 30px;
-      flex-wrap: wrap;
-    }
-
-    .filter-box button {
-      padding: 10px 18px;
-      border-radius: 30px;
-      border: 1px solid #f6c945;
-      background: transparent;
-      color: white;
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    .filter-box button.active,
-    .filter-box button:hover {
-      background: #f6c945;
-      color: #111936;
-    }
-
-    .bot-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-    }
-
-    .bot-card {
-      background: #111936;
-      border: 1px solid #283760;
-      border-radius: 18px;
-      overflow: hidden;
-      transition: 0.25s;
-    }
-
-    .bot-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 18px 35px rgba(0,0,0,0.45);
-    }
-
-    .bot-img {
-      width: 100%;
-      height: 240px;
-      object-fit: cover;
-      display: block;
-      background: #19244a;
-    }
-
-    .bot-content {
-      padding: 22px;
-    }
-
-    .bot-content h3 {
-      font-size: 24px;
-      margin-bottom: 12px;
-    }
-
-    .bot-content p {
-      color: #c9d1e6;
-      line-height: 1.6;
-      min-height: 75px;
-    }
-
-    .tag {
-      display: inline-block;
-      margin: 14px 0;
-      background: #253052;
-      color: #f6c945;
-      padding: 6px 12px;
-      border-radius: 20px;
-      font-size: 13px;
-    }
-
-    .price {
-      font-size: 26px;
-      color: #f6c945;
-      font-weight: bold;
-      margin-bottom: 16px;
-    }
-
-    .bot-content button {
-      width: 100%;
-      padding: 14px;
-      border: none;
-      border-radius: 8px;
-      background: #f6c945;
-      color: #111936;
-      font-weight: bold;
-      cursor: pointer;
-      font-size: 15px;
-    }
-
-    .cart-box {
-      max-width: 1200px;
-      margin: 40px auto;
-      padding: 25px 20px;
-    }
-
-    .cart {
-      background: #111936;
-      border: 1px solid #283760;
-      border-radius: 18px;
-      padding: 25px;
-    }
-
-    .cart h2 {
-      color: #f6c945;
-      margin-bottom: 15px;
-    }
-
-    .cart-item {
-      display: flex;
-      justify-content: space-between;
-      border-bottom: 1px solid #283760;
-      padding: 12px 0;
-      color: #dbe4ff;
-    }
-
-    .cart-item button {
-      background: #ff4d4d;
-      color: white;
-      border: none;
-      padding: 5px 10px;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    .total {
-      margin-top: 18px;
-      font-size: 22px;
-      color: #f6c945;
-      font-weight: bold;
-    }
-
-    .checkout {
-      margin-top: 15px;
-      padding: 14px 22px;
-      background: #f6c945;
-      color: #111936;
-      border: none;
-      border-radius: 8px;
-      font-weight: bold;
-      cursor: pointer;
-      font-size: 16px;
-    }
-
-    .contact {
-      background: #111936;
-      margin-top: 40px;
-      padding: 45px 20px;
-      text-align: center;
-      border-top: 1px solid #283760;
-    }
-
-    .contact h2 {
-      color: #f6c945;
-      font-size: 30px;
-      margin-bottom: 15px;
-    }
-
-    .contact p {
-      color: #c9d1e6;
-      margin-bottom: 20px;
-    }
-
-    .contact a {
-      display: inline-block;
-      background: #f6c945;
-      color: #111936;
-      text-decoration: none;
-      padding: 14px 25px;
-      border-radius: 8px;
-      font-weight: bold;
-    }
-
-    footer {
-      text-align: center;
-      padding: 18px;
-      color: #9da8c7;
-      background: #080d1d;
-    }
-
-    @media(max-width: 900px) {
-      .bot-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .hero h1 {
-        font-size: 38px;
-      }
-    }
-
-    @media(max-width: 600px) {
-      .menu {
-        display: none;
-      }
-
-      .bot-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .hero h1 {
-        font-size: 32px;
-      }
-    }
+    @media(max-width:900px){.bot-grid{grid-template-columns:repeat(2,1fr)}.hero h1{font-size:38px}}
+    @media(max-width:600px){.menu{display:none}.bot-grid{grid-template-columns:1fr}.hero h1{font-size:32px}}
   </style>
 </head>
 
@@ -327,16 +91,9 @@
     <p>Chọn bot phù hợp với nhu cầu giao dịch của bạn</p>
   </div>
 
-  <div class="filter-box">
-    <button class="active" onclick="filterBots('all', this)">Tất cả</button>
-    <button onclick="filterBots('ea', this)">EA MT5</button>
-    <button onclick="filterBots('telegram', this)">Telegram Bot</button>
-    <button onclick="filterBots('tool', this)">Tool Trading</button>
-  </div>
-
   <div class="bot-grid">
 
-    <div class="bot-card" data-category="ea" data-name="EA Gold Sniper" data-price="99">
+    <div class="bot-card" data-name="EA Gold Sniper" data-price="99">
       <img src="images/bot1.jpg" class="bot-img" alt="EA Gold Sniper">
       <div class="bot-content">
         <h3>EA Gold Sniper</h3>
@@ -347,7 +104,7 @@
       </div>
     </div>
 
-    <div class="bot-card" data-category="ea" data-name="EA Scalper Pro" data-price="149">
+    <div class="bot-card" data-name="EA Scalper Pro" data-price="149">
       <img src="images/bot2.jpg" class="bot-img" alt="EA Scalper Pro">
       <div class="bot-content">
         <h3>EA Scalper Pro</h3>
@@ -358,7 +115,7 @@
       </div>
     </div>
 
-    <div class="bot-card" data-category="telegram" data-name="Telegram Signal Bot" data-price="79">
+    <div class="bot-card" data-name="Telegram Signal Bot" data-price="79">
       <img src="images/bot3.jpg" class="bot-img" alt="Telegram Signal Bot">
       <div class="bot-content">
         <h3>Telegram Signal Bot</h3>
@@ -398,7 +155,6 @@
     const card = button.closest('.bot-card');
     const name = card.getAttribute('data-name');
     const price = Number(card.getAttribute('data-price'));
-
     cart.push({ name, price });
     renderCart();
   }
@@ -441,35 +197,15 @@
     }
 
     let message = 'Đơn hàng của bạn:\n';
-
     cart.forEach(item => {
       message += '- ' + item.name + ' - $' + item.price + '\n';
     });
 
     const total = cart.reduce((sum, item) => sum + item.price, 0);
-
     message += '\nTổng tiền: $' + total;
     message += '\n\nVui lòng liên hệ Telegram để thanh toán và nhận bot.';
 
     alert(message);
-  }
-
-  function filterBots(category, button) {
-    const cards = document.querySelectorAll('.bot-card');
-    const buttons = document.querySelectorAll('.filter-box button');
-
-    buttons.forEach(btn => btn.classList.remove('active'));
-    button.classList.add('active');
-
-    cards.forEach(card => {
-      const cardCategory = card.getAttribute('data-category');
-
-      if (category === 'all' || category === cardCategory) {
-        card.style.display = 'block';
-      } else {
-        card.style.display = 'none';
-      }
-    });
   }
 </script>
 
