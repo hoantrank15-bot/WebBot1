@@ -1,215 +1,95 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hoàn Code - Bot Trading</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #0b0f2d;
-      color: #fff;
-    }
-    header {
-      background-color: #10173b;
-      padding: 15px 30px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    header h1 {
-      margin: 0;
-      color: #ffc600;
-    }
-    nav a {
-      color: #fff;
-      margin-left: 20px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    nav a:hover {
-      color: #ffc600;
-    }
-    .container {
-      max-width: 1200px;
-      margin: 30px auto;
-      padding: 0 20px;
-    }
-    .products {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-      justify-content: space-between;
-    }
-    .product {
-      background-color: #121738;
-      border-radius: 10px;
-      padding: 15px;
-      width: 30%;
-      box-sizing: border-box;
-      text-align: center;
-    }
-    .product img {
-      width: 100%;
-      border-radius: 10px;
-    }
-    .product h3 {
-      margin: 10px 0 5px;
-    }
-    .product p {
-      font-size: 14px;
-      color: #ccc;
-    }
-    .price {
-      font-size: 20px;
-      color: #ffc600;
-      margin: 10px 0;
-    }
-    .btn {
-      background-color: #ffc600;
-      border: none;
-      color: #0b0f2d;
-      padding: 10px 20px;
-      font-weight: bold;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    .btn:hover {
-      background-color: #ffb700;
-    }
-    .cart {
-      background-color: #121738;
-      padding: 20px;
-      margin-top: 40px;
-      border-radius: 10px;
-    }
-    .cart h2 {
-      margin-top: 0;
-    }
-    .cart ul {
-      list-style: none;
-      padding: 0;
-    }
-    .cart ul li {
-      display: flex;
-      justify-content: space-between;
-      padding: 5px 0;
-      border-bottom: 1px solid #22284d;
-    }
-    .footer {
-      background-color: #10173b;
-      padding: 20px 30px;
-      text-align: center;
-      margin-top: 40px;
-      font-size: 14px;
-      color: #ccc;
-    }
-    .contact {
-      margin-top: 20px;
-    }
-    .contact p {
-      margin: 5px 0;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hoàn Code - Bot Trading Pro</title>
+<style>
+  body { margin:0; font-family: Arial, sans-serif; background:#0b0f2d; color:#fff; }
+  header { background:#10173b; padding:15px 30px; display:flex; justify-content:space-between; align-items:center; }
+  header h1 { color:#ffc600; font-size:24px; }
+  nav a { color:#fff; margin-left:20px; text-decoration:none; font-weight:bold; }
+  nav a:hover { color:#ffc600; }
+  .container { max-width:1200px; margin:auto; padding:30px 20px; }
+  .hero { text-align:center; padding:50px 20px; }
+  .hero h2 { font-size:32px; color:#ffc600; margin-bottom:10px; }
+  .hero p { font-size:18px; color:#ccc; margin-bottom:30px; }
+
+  .products { display:flex; gap:20px; flex-wrap:wrap; justify-content:center; }
+  .product { background:#121738; border-radius:12px; padding:15px; width:300px; text-align:center; transition: transform 0.3s; }
+  .product:hover { transform:scale(1.05); }
+  .product img { width:100%; height:200px; object-fit:cover; border-radius:10px; }
+  .product h3 { margin:10px 0 5px; }
+  .product p { font-size:14px; color:#ccc; }
+  .tag { display:block; margin:5px 0; color:#ffc600; font-size:13px; }
+  .price { font-size:20px; color:#ffc600; margin:10px 0; }
+  .btn { background:#ffc600; border:none; padding:10px 20px; cursor:pointer; border-radius:5px; font-weight:bold; }
+  .btn:hover { background:#ffda50; }
+
+  .contact { margin-top:50px; text-align:center; }
+  .contact h2 { color:#ffc600; margin-bottom:10px; }
+  .contact p { margin:5px 0; font-size:16px; color:#ccc; }
+
+  footer { background:#10173b; padding:20px 0; text-align:center; margin-top:40px; color:#ccc; font-size:14px; }
+</style>
 </head>
 <body>
-  <header>
-    <h1>Hoàn Code</h1>
-    <nav>
-      <a href="#">Trang chủ</a>
-      <a href="#products">Sản phẩm</a>
-      <a href="#cart">Giỏ hàng</a>
-      <a href="#contact">Liên hệ</a>
-    </nav>
-  </header>
 
-  <div class="container">
-    <h2 id="products">Sản phẩm Bot</h2>
-    <div class="products">
-      <div class="product">
-        <img src="images/bot1.jpg" alt="EA Gold Sniper">
-        <h3>EA Gold Sniper</h3>
-        <p>Bot giao dịch vàng tự động theo xu hướng, phù hợp XAUUSD M5 và M15.</p>
-        <div class="price">$99</div>
-        <button class="btn" onclick="addToCart('EA Gold Sniper', 99)">Thêm vào giỏ</button>
-      </div>
-      <div class="product">
-        <img src="images/bot2.jpg" alt="EA Scalper Pro">
-        <h3>EA Scalper Pro</h3>
-        <p>EA vào lệnh ngắn hạn, tối ưu cho trader thích nhiều lệnh trong ngày.</p>
-        <div class="price">$149</div>
-        <button class="btn" onclick="addToCart('EA Scalper Pro', 149)">Thêm vào giỏ</button>
-      </div>
-      <div class="product">
-        <img src="images/bot3.jpg" alt="Telegram Signal Bot">
-        <h3>Telegram Signal Bot</h3>
-        <p>Bot gửi tín hiệu giao dịch lên Telegram, phù hợp nhóm cộng đồng và VIP.</p>
-        <div class="price">$79</div>
-        <button class="btn" onclick="addToCart('Telegram Signal Bot', 79)">Thêm vào giỏ</button>
-      </div>
+<header>
+  <h1>Hoàn Code</h1>
+  <nav>
+    <a href="#home">Trang chủ</a>
+    <a href="#products">Sản phẩm</a>
+    <a href="#contact">Liên hệ</a>
+  </nav>
+</header>
+
+<section id="home" class="hero">
+  <h2>Bot Trading AI Chuyên Nghiệp</h2>
+  <p>EA MT5, Bot Telegram, tool quản lý vốn và công cụ tự động hóa giao dịch</p>
+</section>
+
+<section id="products" class="container">
+  <h2 style="text-align:center; color:#ffc600; margin-bottom:20px;">Sản phẩm Bot</h2>
+  <div class="products">
+    <div class="product">
+      <img src="images/bot1.jpg" alt="EA Gold Sniper">
+      <h3>EA Gold Sniper</h3>
+      <p>Bot giao dịch vàng tự động theo xu hướng, phù hợp XAUUSD M5 & M15.</p>
+      <span class="tag">EA MT5</span>
+      <span class="price">$99</span>
+      <button class="btn" onclick="alert('Liên hệ Telegram để nhận sản phẩm!')">Thanh toán / Liên hệ</button>
     </div>
-
-    <div class="cart" id="cart">
-      <h2>Giỏ hàng</h2>
-      <ul id="cart-items">
-        <li>Chưa có sản phẩm nào.</li>
-      </ul>
-      <p id="total">Tổng tiền: $0</p>
-      <button class="btn" onclick="checkout()">Thanh toán</button>
+    <div class="product">
+      <img src="images/bot2.jpg" alt="EA Scalper Pro">
+      <h3>EA Scalper Pro</h3>
+      <p>EA vào lệnh ngắn hạn, tối ưu cho trader thích nhiều lệnh trong ngày.</p>
+      <span class="tag">EA MT5</span>
+      <span class="price">$149</span>
+      <button class="btn" onclick="alert('Liên hệ Telegram để nhận sản phẩm!')">Thanh toán / Liên hệ</button>
     </div>
-
-    <div class="contact" id="contact">
-      <h2>Liên hệ mua Bot</h2>
-      <p>Nhấn nút bên dưới để liên hệ tư vấn và nhận hướng dẫn cài đặt.</p>
-      <button class="btn" onclick="window.open('https://t.me/RyanTradingScalper', '_blank')">Liên hệ Telegram</button>
-      <h3>Nạp tiền</h3>
-      <p>STK: 0585085240</p>
-      <p>Ngân hàng: MB Bank</p>
-      <p>Tên: Trần Văn Hoàn</p>
+    <div class="product">
+      <img src="images/bot3.jpg" alt="Telegram Signal Bot">
+      <h3>Telegram Signal Bot</h3>
+      <p>Bot gửi tín hiệu giao dịch lên Telegram, phù hợp nhóm cộng đồng và VIP.</p>
+      <span class="tag">Telegram Bot</span>
+      <span class="price">$79</span>
+      <button class="btn" onclick="alert('Liên hệ Telegram để nhận sản phẩm!')">Thanh toán / Liên hệ</button>
     </div>
   </div>
+</section>
 
-  <div class="footer">
-    © 2026 Hoàn Code. All rights reserved.
-  </div>
+<section id="contact" class="contact container">
+  <h2>Liên hệ mua Bot</h2>
+  <p>Telegram: <a href="https://t.me/RyanTradingScalper" target="_blank">@RyanTradingScalper</a></p>
+  <p>STK: 0585085240</p>
+  <p>Ngân hàng: MB Bank</p>
+  <p>Tên: Trần Văn Hoàn</p>
+</section>
 
-  <script>
-    let cart = [];
+<footer>
+  &copy; 2026 Hoàn Code. All rights reserved.
+</footer>
 
-    function addToCart(name, price) {
-      const existing = cart.find(item => item.name === name);
-      if(existing) {
-        existing.quantity += 1;
-      } else {
-        cart.push({name: name, price: price, quantity: 1});
-      }
-      updateCart();
-    }
-
-    function updateCart() {
-      const list = document.getElementById('cart-items');
-      list.innerHTML = '';
-      if(cart.length === 0) {
-        list.innerHTML = '<li>Chưa có sản phẩm nào.</li>';
-      } else {
-        cart.forEach(item => {
-          const li = document.createElement('li');
-          li.textContent = `${item.name} x ${item.quantity} - $${item.price * item.quantity}`;
-          list.appendChild(li);
-        });
-      }
-      const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-      document.getElementById('total').textContent = 'Tổng tiền: $' + total;
-    }
-
-    function checkout() {
-      if(cart.length === 0) {
-        alert('Giỏ hàng trống!');
-      } else {
-        alert('Vui lòng nạp tiền theo thông tin ngân hàng bên dưới và liên hệ Telegram để xác nhận.');
-      }
-    }
-  </script>
 </body>
 </html>
